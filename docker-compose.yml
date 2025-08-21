@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "PING"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  api:
+    build: .
+    image: newssearch:latest
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      # Core server
+      HOST: 0.0.0.0
+      PORT: 8080
+      OFFLINE_DEFAULT: "0"
+
+      # Secrets (supply via .env at runtime; do NOT bake into image)
+      API_SECRET_KEY: ${API_SECRET_KEY}
+      GUARDIAN_API_KEY: ${GUARDIAN_API_KEY}
+      NYT_API_KEY: ${NYT_API_KEY}
+
+      # Redis config
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 0
+      REDIS_CACHE_TTL: 300
+
+      # Logging (keep lean in prod; raise to DEBUG for debugging)
+      LOG_LEVEL: ERROR
+      LOG_TO_FILE: "false"
+      LOG_ROTATE: size
+      LOG_MAX_BYTES: 1048576
+      LOG_BACKUP_COUNT: 3

@@ -1,0 +1,19 @@
+{
+  "response": {
+    "docs": [
+      {
+        "web_url": "https://www.nytimes.com/example-apple-1",
+        "headline": {"main": "Apple news (offline)"},
+        "abstract": "Offline NYT abstract",
+        "pub_date": "2025-08-08T09:00:00Z"
+      },
+      {
+        "web_url": "https://www.nytimes.com/example-bitcoin-1",
+        "headline": {"main": "Bitcoin rises (offline)"},
+        "abstract": "Offline NYT abstract 2",
+        "pub_date": "2025-08-07T11:30:00Z"
+      }
+    ],
+    "meta": {"hits": 8}
+  }
+}

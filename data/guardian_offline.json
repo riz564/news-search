@@ -1,0 +1,20 @@
+{
+  "response": {
+    "status": "ok",
+    "total": 6,
+    "results": [
+      {
+        "webTitle": "Apple unveils something (offline)",
+        "webUrl": "https://www.theguardian.com/example-apple-1",
+        "webPublicationDate": "2025-08-08T10:00:00Z",
+        "fields": {"trailText": "Offline Guardian sample blurb"}
+      },
+      {
+        "webTitle": "Cricket world update (offline)",
+        "webUrl": "https://www.theguardian.com/example-cricket-1",
+        "webPublicationDate": "2025-08-06T12:00:00Z",
+        "fields": {"trailText": "Another offline sample"}
+      }
+    ]
+  }
+}
